@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using server.Data;
+using server.Interfaces;
 using server.Models;
 
 namespace server.Controllers
@@ -16,88 +11,65 @@ namespace server.Controllers
     {
         private readonly OasContext _context;
 
-        public UserController(OasContext context)
+        private readonly IUserService _service;
+
+        public UserController(OasContext context, IUserService service)
         {
             _context = context;
+            _service = service;
         }
 
-        // GET: api/User
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        // GET: api/all-users
+        [HttpGet("/all-users")]
+        public async Task<List<User>> GetAllUsers()
         {
-            return await _context.Users.ToListAsync();
+            var count = _context.Users.Count();
+
+            Response.Headers.Add("User-Count", count.ToString());
+
+            return await _service.GetAllUsers();
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<User>> GetUserById(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
+            return await _service.GetUserById(id);
         }
 
-        // PUT: api/User/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        // PUT: api/update-user/5
+        [HttpPut("/update-user/{id}")]
+        public async Task<User> UpdateUser(int id, User user)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _service.UpdateUser(id, user);
         }
 
-        // POST: api/User
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        // POST: api/create-user
+        [HttpPost("/create-user")]
+        public async Task<ActionResult<User>> AddUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return await _service.AddUser(user);
         }
 
-        // DELETE: api/User/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        // DELETE: api/delete-user/5
+        [HttpDelete("/delete-user/{id}")]
+        public async Task DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+            await _service.DeleteUser(id);
+        }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+        // PUT: api/first-login/5
+        [HttpPut("/first-login/{id}")]
+        public async Task<User> FirstLoginChangePass(int id, LoginModel user)
+        {
+            return await _service.FirstLoginChangePassword(id, user);
+        }
 
-            return NoContent();
+        // PUT: api/changepassword/5
+        [HttpPut("/changepassword/{id}")]
+        public async Task<User> ChangePassword(int id, LoginModel user)
+        {
+            return await _service.ChangePassword(id, user);
         }
 
         private bool UserExists(int id)
