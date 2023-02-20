@@ -309,3 +309,4 @@ C:\Users\xfand\Desktop\Online Asset Assignment\server\server\bin\Debug\net6.0\ru
 C:\Users\xfand\Desktop\Online Asset Assignment\server\server\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\xfand\Desktop\Online Asset Assignment\server\server\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\xfand\Desktop\Online Asset Assignment\server\server\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\xfand\Desktop\Online Asset Assignment\server\server\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
