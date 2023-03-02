@@ -119,7 +119,7 @@ namespace server.Controllers
                 {
                     new Claim(ClaimTypes.Name, user.Username ?? "Unknown"),
                     new Claim(ClaimTypes.Role, user.Role),
-                    new Claim("FirstLogin", user.IsFirstLogin.ToString())
+                    new Claim("IsFirstLogin", user.IsFirstLogin.ToString())
                 };
             var descriptor = new SecurityTokenDescriptor
             {
