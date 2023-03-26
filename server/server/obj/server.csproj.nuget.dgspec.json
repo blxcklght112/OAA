@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\xfand\\Desktop\\Online Asset Assignment\\server\\server\\server.csproj": {}
+    "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\xfand\\Desktop\\Online Asset Assignment\\server\\server\\server.csproj": {
+    "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xfand\\Desktop\\Online Asset Assignment\\server\\server\\server.csproj",
+        "projectUniqueName": "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\server.csproj",
         "projectName": "server",
-        "projectPath": "C:\\Users\\xfand\\Desktop\\Online Asset Assignment\\server\\server\\server.csproj",
+        "projectPath": "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\server.csproj",
         "packagesPath": "C:\\Users\\xfand\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xfand\\Desktop\\Online Asset Assignment\\server\\server\\obj\\",
+        "outputPath": "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,7 +68,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.12, )"
+              "version": "[6.0.13, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

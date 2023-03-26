@@ -100,7 +100,7 @@ namespace server.Controllers
         }
 
         // PUT: api/changepassword/5
-        [HttpPut("/changepassword/{id}")]
+        [HttpPut("/change-password/{id}")]
         public async Task<User> ChangePassword(int id, LoginModel user)
         {
             return await _service.ChangePassword(id, user);

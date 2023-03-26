@@ -1,30 +1,27 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using server.Data;
+using server.Interfaces;
 using server.Models;
-using server.Services;
 
 namespace server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [EnableCors("MyPolicy")]
     [Authorize(Roles = "Admin")]
     public class AssetsController : ControllerBase
     {
         private readonly OasContext _context;
-        private readonly AssetService _service;
+        private readonly IAssetService _service;
 
-        public AssetsController(OasContext context, AssetService service)
+        public AssetsController(OasContext context, IAssetService service)
         {
             _context = context;
             _service = service;
         }
 
         [AllowAnonymous]
-        [HttpGet("/getallassets")]
+        [HttpGet("/get-assets")]
         public async Task<List<Asset>> GetAllAssets()
         {
             var count = _context.Assets.Count();
@@ -36,7 +33,7 @@ namespace server.Controllers
 
         // GET: api/Assets/5
         [AllowAnonymous]
-        [HttpGet("/getasset/{id:int}")]
+        [HttpGet("/get-asset/{id:int}")]
         public async Task<Asset> GetAssetById(int id)
         {
             return await _service.GetAssetById(id);
@@ -44,7 +41,7 @@ namespace server.Controllers
 
         // PUT: api/Assets/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("/updateasset/{id:int}")]
+        [HttpPut("/update-asset/{id:int}")]
         public async Task<Asset> UpdateAsset(int id, Asset asset)
         {
             return await _service.UpdateAsset(id, asset);
@@ -52,14 +49,14 @@ namespace server.Controllers
 
         // POST: api/Assets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("/createasset")]
+        [HttpPost("/create-asset")]
         public async Task<Asset> CreateAsset(Asset asset)
         {
             return await _service.CreateAsset(asset);
         }
 
         // DELETE: api/Assets/5
-        [HttpDelete("/deleteasset/{id:int}")]
+        [HttpDelete("/delete-asset/{id:int}")]
         public async Task DeleteAsset(int id)
         {
             await _service.DeleteAsset(id);
