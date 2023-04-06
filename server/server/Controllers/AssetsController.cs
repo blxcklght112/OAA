@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using server.Data;
 using server.Interfaces;
@@ -8,6 +9,7 @@ namespace server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("MyPolicy")]
     [Authorize(Roles = "Admin")]
     public class AssetsController : ControllerBase
     {

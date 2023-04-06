@@ -10,6 +10,7 @@ namespace server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("MyPolicy")]
     [Authorize(Roles = "Admin")]
     public class CategoryController : ControllerBase
     {

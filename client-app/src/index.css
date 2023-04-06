@@ -1,13 +1,100 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+}
+
+.site-title {
+  font-size: 1.5rem;
+}
+
+.nav {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.nav ul{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav .user-info p{
+  margin: -.0rem 0;
+}
+
+.nav a,
+.side a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav li.active,
+.side li.active {
+  background-color: #555;
+}
+
+.nav li:hover,
+.side li:hover{
+  background-color: #777;
+}
+
+.main {
+  display: flex;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.side img{
+  width: 20rem;
+  display: flex;
+  padding: 1rem;
+}
+
+.side .title {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.side ul{
+  list-style-type: none;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.side-bar {
+  font-size: 1.5rem;
+}
+
+.side-bar a{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: .75rem;
+}
+
+.side-bar li{
+  margin: .25rem 0;
+}
+
+.contents{
+  width: 100%;
+  margin: 1rem;
+  text-align: center;
 }

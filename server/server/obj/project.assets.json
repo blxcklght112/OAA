@@ -11316,23 +11316,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\xfand\\.nuget\\packages\\": {},
+    "C:\\Users\\locph\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\server.csproj",
+      "projectUniqueName": "C:\\Users\\locph\\Source\\Repos\\blxcklght112\\OAA\\server\\server\\server.csproj",
       "projectName": "server",
-      "projectPath": "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\server.csproj",
-      "packagesPath": "C:\\Users\\xfand\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\xfand\\Desktop\\New folder\\OAA\\server\\server\\obj\\",
+      "projectPath": "C:\\Users\\locph\\Source\\Repos\\blxcklght112\\OAA\\server\\server\\server.csproj",
+      "packagesPath": "C:\\Users\\locph\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\locph\\Source\\Repos\\blxcklght112\\OAA\\server\\server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\xfand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\locph\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -11417,7 +11417,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -18,6 +18,17 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<OasContext>(x => x.UseSqlServer("Name=ConnectionStrings:Connection"));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "MyPolicy",
+        builder =>
+        {
+            // builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().WithExposedHeaders("User-Pagination", "Asset-Pagination", "Assignment-Pagination", "Own-Assignment-Pagination");
+            builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().WithExposedHeaders("*");
+        });
+});
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -91,6 +102,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
+app.UseCors("MyPolicy");
 
 app.UseAuthorization();
 

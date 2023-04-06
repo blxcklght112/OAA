@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using server.Data;
 using server.Interfaces;
@@ -6,8 +7,9 @@ using server.Models;
 
 namespace server.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [EnableCors("MyPolicy")]
     [Authorize(Roles = "Admin")]
     public class AssignmentsController : ControllerBase
     {
