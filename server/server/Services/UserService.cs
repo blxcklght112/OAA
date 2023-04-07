@@ -71,6 +71,7 @@ namespace server.Services
                 {
                     FirstName = user.FirstName,
                     LastName = user.LastName,
+                    FullName = user.LastName + " " + user.FirstName,
                     Dob = user.Dob,
                     JoinedDate = user.JoinedDate,
                     Gender = user.Gender,
@@ -158,6 +159,12 @@ namespace server.Services
             var _user = await _context.Users.FindAsync(id);
             if(_user != null)
             {
+                _user.FirstName = _user.FirstName;
+                _user.LastName = _user.LastName;
+                _user.FullName = _user.FullName;
+                _user.UserCode = _user.UserCode;
+                _user.Username = _user.Username;
+                _user.Password = _user.Password;
                 _user.Dob = user.Dob;
                 _user.JoinedDate = user.JoinedDate;
                 _user.Gender = user.Gender;

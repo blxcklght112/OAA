@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using server.Data;
 
 namespace server.Models;
 
@@ -42,8 +40,10 @@ public partial class User
     [StringLength(20)]
     public string Password { get; set; } = null!;
 
-    [DefaultValue(true)]
     public bool IsFirstLogin { get; set; }
+
+    [StringLength(50)]
+    public string FullName { get; set; } = null!;
 
     [InverseProperty("AssignedByUser")]
     public virtual ICollection<Assignment> AssignmentAssignedByUsers { get; } = new List<Assignment>();

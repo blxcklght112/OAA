@@ -48,7 +48,9 @@ function App() {
                   </div>
                 </div>
               </div>
-            )) : (<FirstLogin />)
+            )) : (
+              <FirstLogin />
+            )
           )
           : (
             <Routes>
