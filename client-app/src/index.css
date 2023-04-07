@@ -32,6 +32,11 @@ body {
   margin: -.0rem 0;
 }
 
+.user--dropDown {
+  display: flex;
+  flex-direction: column;
+}
+
 .nav a,
 .side a {
   color: inherit;

@@ -1,7 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-// import './App.css';
 import LoginPage from './pages/LoginPage';
-import Navbar from './components/Nav/navbar';
 import AdminHomePage from './pages/admin/AdminHomePage';
 import AdminUserPage from './pages/admin/AdminUserPage';
 import AdminAssetPage from './pages/admin/AdminAssetPage';
@@ -10,7 +8,9 @@ import StaffHomePage from './pages/staff/StaffHomePage';
 import StaffUserPage from './pages/staff/StaffUserPage';
 import StaffAssetPage from './pages/staff/StaffAssetPage';
 import StaffAssignmentPage from './pages/staff/StaffAssignmentPage';
-import Sidebar from './components/Side/sidebar';
+import NavBar from './components/Nav/navbar';
+import SideBar from './components/Side/sidebar';
+import FirstLogin from './components/FirstLogin';
 
 function App() {
   return (
@@ -18,30 +18,37 @@ function App() {
       {
         localStorage.getItem("token")
           ? (
-            <>
+            (localStorage.getItem("isFirstLogin") === "false") ? (((localStorage.getItem("role") === "Admin")) ? (
               <div className='container'>
-                <Navbar />
+                <NavBar />
                 <div className='main'>
-                  <Sidebar />
+                  <SideBar />
                   <div className='contents'>
                     <Routes>
-                      {localStorage.getItem("role") === "Admin"} ? (
-                      <Route path='/home' element={<AdminHomePage />} />
+                      <Route index path='/home' element={<AdminHomePage />} />
                       <Route path='/user' element={<AdminUserPage />} />
                       <Route path='/asset' element={<AdminAssetPage />} />
                       <Route path='/assignment' element={<AdminAssignmentPage />} />
-                      ) : (
-                      <Route path='/home' element={<StaffHomePage />} />
-                      <Route path='/user' element={<StaffUserPage />} />
-                      <Route path='/asset' element={<StaffAssetPage />} />
-                      <Route path='/assignment' element={<StaffAssignmentPage />} />
-                      )
                     </Routes>
-
                   </div>
                 </div>
               </div>
-            </>
+            ) : (
+              <div className='container'>
+                <NavBar />
+                <div className='main'>
+                  <SideBar />
+                  <div className='contents'>
+                    <Routes>
+                      <Route index path='/home' element={<StaffHomePage />} />
+                      <Route path='/user' element={<StaffUserPage />} />
+                      <Route path='/asset' element={<StaffAssetPage />} />
+                      <Route path='/assignment' element={<StaffAssignmentPage />} />
+                    </Routes>
+                  </div>
+                </div>
+              </div>
+            )) : (<FirstLogin />)
           )
           : (
             <Routes>

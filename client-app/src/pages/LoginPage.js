@@ -20,8 +20,9 @@ const LoginPage = () => {
                     localStorage.setItem("isFirstLogin", response.isFirstLogin);
                     localStorage.setItem("username", response.username);
                     localStorage.setItem("id", response.id);
-                    if (localStorage.getItem("role") === "Admin") { navigate("/home") }
-                    else if (localStorage.getItem("role") === "Staff") { navigate("/homestaff") }
+                    // if (localStorage.getItem("role") === "Admin") { navigate("/home") }
+                    // else if (localStorage.getItem("role") === "Staff") { navigate("/homestaff") }
+                    navigate("/home");
                     window.location.reload();
                 },
                 (err) => {
