@@ -11,7 +11,7 @@ body {
 }
 
 .nav {
-  background-color: #333;
+  background-color: #882929;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -45,12 +45,12 @@ body {
 
 .nav li.active,
 .side li.active {
-  background-color: #555;
+  background-color: #882929;
 }
 
 .nav li:hover,
 .side li:hover{
-  background-color: #777;
+  background-color: #a73030;
 }
 
 .main {
@@ -102,4 +102,101 @@ body {
   width: 100%;
   margin: 1rem;
   text-align: center;
+}
+
+.extension {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ant-space {
+  margin-right: 90px;
+}
+
+.title {
+  font-size: 2rem;
+  color: #cf2338;
+}
+
+.extension a {
+  float: right;
+}
+
+.ant-select-arrow .anticon>svg {
+  margin-top: 6px;
+}
+
+.search .anticon svg {
+  margin-top: 4px;
+}
+
+.ant-space-item{
+  margin-left: 24px;
+}
+
+.ant-table-pagination .ant-pagination {
+  color: red;
+}
+
+.ant-pagination .ant-pagination-item-active a{
+  color: white;
+}
+
+.ant-pagination-item-active {
+  color: white;
+  background: #c92c2c !important;
+  border-color: #c92c2c !important;
+}
+
+.ant-pagination-item-active a:hover {
+  color: #333 !important;
+}
+
+.ant-pagination-options div:hover,
+.ant-select div:hover,
+.ant-space-item span:hover {
+  border-color: #c92c2c !important;
+}
+
+.ant-btn.ant-btn-default {
+  color: red;
+}
+
+.ant-btn.ant-btn-default:hover {
+  color: red;
+  border-color: red;
+}
+
+button.ant-btn.ant-btn-text.btn--action__noborder,
+button.ant-btn.ant-btn-text.btn--action__noborder:hover {
+  border: none;
+  background-color: white;
+  margin-right: -12px;
+}
+
+button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--check,
+button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--check:hover {
+  border: none;
+  background-color: white;
+  /* color: rgba(212, 42, 42, .5) !important; */
+  color: #d42a2a80 !important;
+}
+
+button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--rotate,
+button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--rotate:hover {
+  border: none;
+  background-color: white;
+  color: #2352eb80 !important;
+}
+
+.ant-btn.ant-btn-default:focus {
+  color: red;
+  border-color: red;
+}
+
+.ant-select-selection-item,
+.ant-select-item.ant-select-item-option {
+  color: #c92c2c !important;
 }

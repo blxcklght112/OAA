@@ -3,6 +3,7 @@ import { CloseCircleTwoTone, EditTwoTone, FilterFilled } from "@ant-design/icons
 import axios from "axios";
 import { Button, Input, Modal, Select, Space, Table } from "antd";
 import { Link } from "react-router-dom";
+import CreateUser from "../../services/CreateUser";
 
 const AdminUserPage = () => {
 
@@ -91,7 +92,6 @@ const AdminUserPage = () => {
     };
 
     const handleFilter = (value) => {
-        console.log(value);
         setSelectedValues(value);
     };
 
@@ -111,8 +111,6 @@ const AdminUserPage = () => {
         }
         return originalElement;
     }
-
-    const onSearch = value => console.log(value);
 
     const columns = [
         {
@@ -204,9 +202,9 @@ const AdminUserPage = () => {
         :
         <>
             <article>
-                <h3 className="title">
+                <h1 className="title">
                     User List
-                </h3>
+                </h1>
                 {dataSource?.length
                     ? (
                         <div>
@@ -214,12 +212,12 @@ const AdminUserPage = () => {
                                 <div className="filter">
                                     <Select
                                         mode="multiple"
-                                        placeholder="Type"
+                                        placeholder="Role"
                                         suffixIcon={<FilterFilled />}
                                         showArrow
                                         value={selectedValues}
                                         onChange={handleFilter}
-                                        style={{ width: "200px" }}
+                                        style={{ width: "150px" }}
                                     >
                                         <Select.Option key={0} value={"admin"}>
                                             Admin
@@ -233,13 +231,12 @@ const AdminUserPage = () => {
                                     <Space direction="vertical">
                                         <Search
                                             allowClear
-                                            onSearch={onSearch}
                                             value={searchText}
                                             onChange={evt => setSearchText(evt.target.value)}
                                             style={{ width: 200 }}
                                         />
                                     </Space>
-                                    <a href="/createuser" className="btn btn-danger">Create new user</a>
+                                    <CreateUser />
                                 </div>
                             </div>
                             <div className="table-responsive-sm">
@@ -262,6 +259,7 @@ const AdminUserPage = () => {
                                     onRow={(user) => ({
                                         onDoubleClick: () => (showModal(user.id))
                                     })}
+                                    rowKey={"id"}
                                 >
                                 </Table>
                             </div>
