@@ -169,6 +169,19 @@ body {
   border-color: red;
 }
 
+.ant-radio-checked .ant-radio-inner{
+  border-color: red !important ;
+  background-color: white !important;
+}
+
+.ant-radio-checked .ant-radio-inner:after{
+  background-color: red;
+}
+
+.ant-radio:hover .ant-radio-inner {
+  border-color: red ;
+}
+
 button.ant-btn.ant-btn-text.btn--action__noborder,
 button.ant-btn.ant-btn-text.btn--action__noborder:hover {
   border: none;

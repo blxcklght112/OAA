@@ -4,8 +4,12 @@ import React, { useState } from "react";
 
 const CreateUser = () => {
 
-    const [form] = Form.useForm();
-    const Option = Select;
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [gender, setGender] = useState("");
+    const [role, setRole] = useState("");
+    const [dob, setDOB] = useState("");
+    const [joinedDate, setJoinedDate] = useState("");
     const formItemLayout = {
         labelCol: {
             span: 5,
@@ -16,55 +20,103 @@ const CreateUser = () => {
         },
     };
 
-    const onFinish = (fieldsValue) => {
-        const values = {
-            // ...fieldsValue,
-            FirstName: fieldsValue["FirstName"],
-            LastName: fieldsValue["LastName"],
-            Gender: fieldsValue["Gender"],
-            Role: fieldsValue["Role"],
-            DOB: fieldsValue["DOB"].format("YYYY-MM-DD"),
-            JoinedDate: fieldsValue["JoinedDate"].format("YYYY-MM-DD"),
-        };
 
-        var today = new Date()
-        var ngaysinh = new Date(values.DOB)
-        var tuoi = Math.abs(today - ngaysinh) / (1000 * 60 * 60 * 24) / 365
-        var ngayjoin = new Date(values.JoinedDate)
-        var ngayjoinDay = ngayjoin.getDay()
-        var chenhlech = ngayjoin - ngaysinh
-        var chenhlech1 = ngayjoin - today
-        var Fspace = values.FirstName
-        var Lspace = values.LastName
-        const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
+
+    const showBack = () => {
+        window.location.reload();
+    }
+
+    const [form] = Form.useForm();
+    const Option = Select;
+
+    const onFinish = () => {
+
+        console.log(firstName);
+        console.log(lastName);
+        console.log(dob);
+        console.log(joinedDate);
+        console.log(gender);
+        console.log(role);
+
+        // axios({
+        //     method: 'post',
+        //     url: "https://localhost:7150/create-user",
+        //     data: {
+        //         id: "0",
+        //         userCode: "string",
+        //         username: "string",
+        //         password: "string",
+        //         isFirstLogin: true,
+        //         fullName: "string",
+        //         firstName: firstName,
+        //         lastName: lastName.trim().replace(/\s+/g, " "),
+        //         dob: dob,
+        //         joinedDate: joinedDate,
+        //         gender: gender,
+        //         role: role,
+        //     },
+        //     headers: { Authorization: `Bearer ${token}` }
+        // })
+        //     .then(response => {
+        //         console.log(response.data)
+        //         Modal.success({
+        //             title: 'SAVE SUCCESSFULLY',
+        //             content: 'You have done this very well',
+        //             onOk: () => { setIsVisible(true) }
+        //         })
+        //     })
+        //     .catch(e => {
+        //         Modal.error({
+        //             title: 'CHANGE FAILED',
+        //             content: e
+        //         })
+        //     });
+
+        var today = new Date();
+        var birthDay = new Date(dob);
+        var age = Math.abs(today - birthDay) / (1000 * 60 * 60 * 24) / 365;
+        var joined = new Date(joinedDate);
+        var joinedDay = joined.getDay();
+        var chenhlech = joined - birthDay;
+        var chenhlech1 = joined - today;
+        var Fspace = firstName;
+        var Lspace = lastName;
         if (Fspace.length < 50) {
             if (Lspace.length < 50) {
                 if (Fspace.indexOf(' ') < 0) {
                     if (Lspace.trim().length !== 0) {
-                        if (ngayjoinDay !== 0 && ngayjoinDay !== 6) {
-                            if (ngaysinh < today) {
+                        if (joinedDay !== 0 && joinedDay !== 6) {
+                            if (birthDay < today) {
                                 if (chenhlech1 < 0) {
                                     if (chenhlech > 0) {
-                                        if (tuoi >= 18) {
+                                        if (age >= 18) {
                                             axios({
                                                 method: 'post',
-                                                url: `https://localhost:7150/create-user`,
+                                                url: "https://localhost:7150/create-user",
                                                 data: {
-                                                    FirstName: values.FirstName,
-                                                    LastName: values.LastName.trim().replace(/\s+/g, " "),
-                                                    DOB: values.DOB,
-                                                    JoinedDate: values.JoinedDate,
-                                                    Gender: values.Gender,
-                                                    Role: values.Role,
+                                                    id: "0",
+                                                    userCode: "string",
+                                                    username: "string",
+                                                    password: "string",
+                                                    isFirstLogin: true,
+                                                    fullName: "string",
+                                                    firstName: firstName,
+                                                    lastName: lastName.trim().replace(/\s+/g, " "),
+                                                    dob: dob,
+                                                    joinedDate: joinedDate,
+                                                    gender: gender,
+                                                    role: role,
                                                 },
                                                 headers: { Authorization: `Bearer ${token}` }
                                             })
+
                                                 .then(response => {
                                                     console.log(response.data)
                                                     Modal.success({
                                                         title: 'SAVE SUCCESSFULLY',
                                                         content: 'You have done this very well',
-                                                        onOk: () => { setIsVisible(true) }
+                                                        onOk: () => { showBack() }
                                                     })
                                                 })
                                                 .catch(e => {
@@ -133,6 +185,7 @@ const CreateUser = () => {
     };
 
 
+
     const [isVisible, setIsVisible] = useState(false);
 
     const showModal = () => {
@@ -141,6 +194,14 @@ const CreateUser = () => {
 
     const handleCancel = () => {
         setIsVisible(false);
+    }
+
+    const selectedJoinedDate = (date, dateString) => {
+        setJoinedDate(new Date(date).toLocaleDateString("en-CA"));
+    }
+
+    const selectedDOB = (date, dateString) => {
+        setDOB(new Date(date).toLocaleDateString("en-CA"));
     }
 
     return (
@@ -169,48 +230,59 @@ const CreateUser = () => {
                 ]}
             >
                 <div>
-                    <Form id="create-user--form" name="complex-form" form={form} onFinish={onFinish} {...formItemLayout} labelAlign="left" >
+                    <Form id="create-user--form" name="complex-form" form={form} onFinish={onFinish} labelAlign="left" {...formItemLayout}>
                         <Form.Item label="First Name" style={{ marginBottom: 20 }}
-                            name="FirstName"
+                            name="First Name"
                             rules={[{ required: true }]}
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
                         >
                             <Input className="inputForm" />
                         </Form.Item>
 
                         <Form.Item label="Last Name" style={{ marginBottom: 20 }}
-                            name="LastName"
+                            name="Last Name"
                             rules={[{ required: true }]}
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
                         >
                             <Input className="inputForm" />
                         </Form.Item>
 
                         <Form.Item label="Date of Birth" style={{ marginBottom: 20 }}
-                            name="DOB"
+                            name="Date of Birth"
                             rules={[{ required: true }]}
+                            value={dob}
                         >
                             <DatePicker
                                 style={{ display: "block" }}
                                 format="DD/MM/YYYY"
                                 placeholder=""
                                 className="inputForm"
+                                onChange={selectedDOB}
                             />
                         </Form.Item>
 
                         <Form.Item label="Joined Date" style={{ marginBottom: 20 }}
-                            name="JoinedDate"
+                            name="Joined Date"
                             rules={[{ required: true }]}
+                            value={joinedDate}
                         >
                             <DatePicker
                                 style={{ display: "block" }}
-                                format="DD/MM/YYYY"
+                                format='DD/MM/YYYY'
                                 placeholder=""
                                 className="inputForm"
+                                onChange={selectedJoinedDate}
                             />
 
                         </Form.Item>
                         <Form.Item label="Gender" style={{ marginBottom: 20 }}
                             name="Gender" rules={[{ required: true }]}>
-                            <Radio.Group>
+                            <Radio.Group name="gender-radiogroup"
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}
+                            >
                                 <Radio value="Female">Female</Radio>
                                 <Radio value="Male">Male</Radio>
                             </Radio.Group>
@@ -224,6 +296,7 @@ const CreateUser = () => {
                                 showSearch
                                 className="inputForm"
                                 style={{ display: "block", color: "black" }}
+                                onChange={(value) => setRole(value)}
                             >
                                 <Option style={{ color: "black" }} value="Staff">Staff</Option>
                                 <Option value="Admin">Admin</Option>
