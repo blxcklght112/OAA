@@ -32,47 +32,6 @@ const CreateUser = () => {
 
     const onFinish = () => {
 
-        console.log(firstName);
-        console.log(lastName);
-        console.log(dob);
-        console.log(joinedDate);
-        console.log(gender);
-        console.log(role);
-
-        // axios({
-        //     method: 'post',
-        //     url: "https://localhost:7150/create-user",
-        //     data: {
-        //         id: "0",
-        //         userCode: "string",
-        //         username: "string",
-        //         password: "string",
-        //         isFirstLogin: true,
-        //         fullName: "string",
-        //         firstName: firstName,
-        //         lastName: lastName.trim().replace(/\s+/g, " "),
-        //         dob: dob,
-        //         joinedDate: joinedDate,
-        //         gender: gender,
-        //         role: role,
-        //     },
-        //     headers: { Authorization: `Bearer ${token}` }
-        // })
-        //     .then(response => {
-        //         console.log(response.data)
-        //         Modal.success({
-        //             title: 'SAVE SUCCESSFULLY',
-        //             content: 'You have done this very well',
-        //             onOk: () => { setIsVisible(true) }
-        //         })
-        //     })
-        //     .catch(e => {
-        //         Modal.error({
-        //             title: 'CHANGE FAILED',
-        //             content: e
-        //         })
-        //     });
-
         var today = new Date();
         var birthDay = new Date(dob);
         var age = Math.abs(today - birthDay) / (1000 * 60 * 60 * 24) / 365;

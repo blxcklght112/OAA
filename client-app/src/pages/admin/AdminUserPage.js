@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { CloseCircleTwoTone, EditTwoTone, FilterFilled } from "@ant-design/icons";
+import { CloseCircleTwoTone, FilterFilled } from "@ant-design/icons";
 import axios from "axios";
 import { Button, Input, Modal, Select, Space, Table } from "antd";
-import { Link } from "react-router-dom";
-import CreateUser from "../../services/CreateUser";
+import CreateUser from "../../services/users/CreateUser";
+import EditUser from "../../services/users/EditUser";
 
 const AdminUserPage = () => {
 
@@ -51,7 +51,7 @@ const AdminUserPage = () => {
     useEffect(() => {
         setLoading(true);
 
-        axios.get("https://localhost:7150/all-users",{
+        axios.get("https://localhost:7150/all-users", {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
@@ -86,8 +86,9 @@ const AdminUserPage = () => {
             title: "Are you sure?",
             content: "Do you want to delete this User?",
             okText: "Yes",
-            onCancel() {},
-            onOk: () => {deleteuser(id)}
+            okType: "primary",
+            onCancel() { },
+            onOk: () => { deleteuser(id) }
         })
     };
 
@@ -188,9 +189,10 @@ const AdminUserPage = () => {
             dataIndex: "id",
             render: (id) => (
                 <Space>
-                    <Link to={`/user/${id}`} >
+                    {/* <Link to={`/user/${id}`} >
                         <EditTwoTone twoToneColor="#52cbff" />
-                    </Link>
+                    </Link> */}
+                    <EditUser />
                     <CloseCircleTwoTone twoToneColor="#d42a2a" onClick={() => showConfirm(id)} />
                 </Space>
             )
@@ -199,90 +201,91 @@ const AdminUserPage = () => {
 
     return (
         !localStorage.getItem("token") ? window.location.reload()
-        :
-        <>
-            <article>
-                <h1 className="title">
-                    User List
-                </h1>
-                {dataSource?.length
-                    ? (
-                        <div>
-                            <div className="extension">
-                                <div className="filter">
-                                    <Select
-                                        mode="multiple"
-                                        placeholder="Role"
-                                        suffixIcon={<FilterFilled />}
-                                        showArrow
-                                        value={selectedValues}
-                                        onChange={handleFilter}
-                                        style={{ width: "150px" }}
+            :
+            <>
+                <article>
+                    <h1 className="title">
+                        User List
+                    </h1>
+                    {dataSource?.length
+                        ? (
+                            <div>
+                                <div className="extension">
+                                    <div className="filter">
+                                        <Select
+                                            mode="multiple"
+                                            placeholder="Role"
+                                            suffixIcon={<FilterFilled />}
+                                            showArrow
+                                            value={selectedValues}
+                                            onChange={handleFilter}
+                                            style={{ width: "150px" }}
+                                        >
+                                            <Select.Option key={0} value={"admin"}>
+                                                Admin
+                                            </Select.Option>
+                                            <Select.Option key={1} value={"staff"}>
+                                                Staff
+                                            </Select.Option>
+                                        </Select>
+                                        <Space direction="vertical">
+                                            <Search
+                                                allowClear
+                                                value={searchText}
+                                                onChange={evt => setSearchText(evt.target.value)}
+                                                style={{ width: 400, marginLeft: 100 }}
+                                            />
+                                        </Space>
+                                    </div>
+                                    <div className="search">
+                                        <CreateUser />
+                                    </div>
+                                </div>
+                                <div className="table-responsive-sm">
+                                    <Table
+                                        loading={loading}
+                                        columns={columns}
+                                        dataSource={dataFiltered}
+                                        pagination={{
+                                            showSizeChanger: true,
+                                            total: totalUser,
+                                            current: page,
+                                            pageSize: pageSize,
+                                            pageSizeOptions: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+                                            itemRender: itemRender,
+                                            onChange: (page, pageSize) => {
+                                                setPage(page);
+                                                setPageSize(pageSize)
+                                            }
+                                        }}
+                                        onRow={(user) => ({
+                                            onDoubleClick: () => (showModal(user.id)),
+                                            onClick: () => (localStorage.setItem("edit-user-id", user.id))
+                                        })}
+                                        rowKey={"id"}
                                     >
-                                        <Select.Option key={0} value={"admin"}>
-                                            Admin
-                                        </Select.Option>
-                                        <Select.Option key={1} value={"staff"}>
-                                            Staff
-                                        </Select.Option>
-                                    </Select>
-                                </div>
-                                <div className="search">
-                                    <Space direction="vertical">
-                                        <Search
-                                            allowClear
-                                            value={searchText}
-                                            onChange={evt => setSearchText(evt.target.value)}
-                                            style={{ width: 200 }}
-                                        />
-                                    </Space>
-                                    <CreateUser />
+                                    </Table>
                                 </div>
                             </div>
-                            <div className="table-responsive-sm">
-                                <Table
-                                    loading={loading}
-                                    columns={columns}
-                                    dataSource={dataFiltered}
-                                    pagination={{
-                                        showSizeChanger: true,
-                                        total: totalUser,
-                                        current: page,
-                                        pageSize: pageSize,
-                                        pageSizeOptions: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
-                                        itemRender: itemRender,
-                                        onChange: (page, pageSize) => {
-                                            setPage(page);
-                                            setPageSize(pageSize)
-                                        }
-                                    }}
-                                    onRow={(user) => ({
-                                        onDoubleClick: () => (showModal(user.id))
-                                    })}
-                                    rowKey={"id"}
-                                >
-                                </Table>
-                            </div>
-                        </div>
-                    ) : <p>No user to display</p>
-                }
-            </article>
-            <Modal
-                open={isVisible}
-                title="User Detail"
-                onCancel={handleCancel}
-                footer={[
-                ]}
-            >
-                <p className="view_Detail">Full name : {detail.fullName}</p>
-                <p className="view_Detail">Date Of Birth : {new Date(detail.dob).toLocaleDateString("en-GB")} </p>
-                <p className="view_Detail">Joined Date : {new Date(detail.joinedDate).toLocaleDateString("en-GB")}</p>
-                <p className="view_Detail">Gender : {detail.gender}</p>
-                <p className="view_Detail">Type : {detail.role}</p>
-                <p className="view_Detail">Username : {detail.username}</p>
-                <p className="view_Detail">Staff Code : {detail.userCode}</p>
-            </Modal>
-        </>
+                        ) : <p>No user to display</p>
+                    }
+                </article>
+                <Modal
+                    open={isVisible}
+                    title="User Detail"
+                    onCancel={handleCancel}
+                    footer={[
+                    ]}
+                >
+                    <p className="view_Detail">Full name : {detail.fullName}</p>
+                    <p className="view_Detail">Date Of Birth : {new Date(detail.dob).toLocaleDateString("en-GB")} </p>
+                    <p className="view_Detail">Joined Date : {new Date(detail.joinedDate).toLocaleDateString("en-GB")}</p>
+                    <p className="view_Detail">Gender : {detail.gender}</p>
+                    <p className="view_Detail">Type : {detail.role}</p>
+                    <p className="view_Detail">Username : {detail.username}</p>
+                    <p className="view_Detail">Staff Code : {detail.userCode}</p>
+                </Modal>
+            </>
     )
 }
 

@@ -136,6 +136,13 @@ body {
   margin-left: 24px;
 }
 
+.ant-space-item span:hover,
+.ant-space-item button:hover,
+.ant-space-item span:focus,
+.ant-space-item button:focus {
+  border-color: #c2baba !important;
+}
+
 .ant-table-pagination .ant-pagination {
   color: red;
 }
@@ -155,8 +162,7 @@ body {
 }
 
 .ant-pagination-options div:hover,
-.ant-select div:hover,
-.ant-space-item span:hover {
+.ant-select div:hover {
   border-color: #c92c2c !important;
 }
 
@@ -167,6 +173,15 @@ body {
 .ant-btn.ant-btn-default:hover {
   color: red;
   border-color: red;
+}
+
+.ant-picker:hover,
+.ant-form-item-control-input-content input:hover{
+  border-color: red;
+}
+
+.ant-radio-group label:hover .ant-radio-inner{
+  border-color: red !important;
 }
 
 .ant-radio-checked .ant-radio-inner{
@@ -212,4 +227,12 @@ button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--rotate:hove
 .ant-select-selection-item,
 .ant-select-item.ant-select-item-option {
   color: #c92c2c !important;
+}
+
+.ant-modal-confirm-btns .ant-btn-primary{
+  background-color: red;
+}
+
+.ant-modal-confirm-btns .ant-btn-primary:hover{
+  background-color: rgb(255, 84, 84);
 }
