@@ -22,6 +22,7 @@ const EditUser = () => {
     };
     
     const showback = () => {
+        window.localStorage.removeItem("edit-user-id");
         window.location.reload();
     };
 
