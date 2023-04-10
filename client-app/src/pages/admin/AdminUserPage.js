@@ -189,9 +189,6 @@ const AdminUserPage = () => {
             dataIndex: "id",
             render: (id) => (
                 <Space>
-                    {/* <Link to={`/user/${id}`} >
-                        <EditTwoTone twoToneColor="#52cbff" />
-                    </Link> */}
                     <EditUser />
                     <CloseCircleTwoTone twoToneColor="#d42a2a" onClick={() => showConfirm(id)} />
                 </Space>
