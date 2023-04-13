@@ -42,10 +42,11 @@ namespace server.Services
                     {
                         AssetId = foundAsset.Id,
                         AssetName = foundAsset.AssetName,
+                        AssetCode = foundAsset.AssetCode,
                         AssignedToUserId = assignedTo.Id,
                         AssignedToUserName = assignedTo.Username,
                         AssignedByUserId = assignedBy.Id,
-                        AssignedByUserName = assignedTo.Username,
+                        AssignedByUserName = assignedBy.Username,
                         AssignedDate = assignment.AssignedDate,
                         Note = assignment.Note,
                         Status = "Waiting"
@@ -94,7 +95,7 @@ namespace server.Services
 
             if(foundUser != null)
             {
-                var ownAssignments = await _context.Assignments.Where(x => x.AssignedToUserName == username).ToListAsync();
+                var ownAssignments = await _context.Assignments.Where(x => x.AssignedToUserName == username && (x.Status.ToLower() == "waiting")).ToListAsync();
 
                 return ownAssignments;
             }

@@ -146,10 +146,6 @@ const CreateAsset = () => {
                             if (format.test(Aspace)) {
                                 if (Sspace.length < 500) {
                                     if (Sspace.trim().length !== 0) {
-                                        // console.log(assetName);
-                                        // console.log(newCategoryID);
-                                        // console.log(specification);
-                                        // console.log(installedDate);
                                         axios({
                                             method: 'post',
                                             url: `https://localhost:7150/create-asset`,
@@ -339,7 +335,7 @@ const CreateAsset = () => {
                             name="Specification"
                             rules={[{ required: true }]}
                             value={specification}
-                            onChange={(e) => setSpecification(e.target.value)}
+                            onChange={(e) => setSpecification(e.target.value.trim().replace(/\s+/g, " "))}
                         >
                             <TextArea autoSize={{ minRows: 5, maxRows: 7 }} />
                         </Form.Item>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace server.Models;
@@ -40,15 +41,21 @@ public partial class Assignment
     [StringLength(10)]
     public string Status { get; set; } = null!;
 
+    [StringLength(20)]
+    public string AssetCode { get; set; } = null!;
+
+    [JsonIgnore]
     [ForeignKey("AssetId")]
     [InverseProperty("Assignments")]
-    public virtual Asset Asset { get; set; } = null!;
+    public virtual Asset? Asset { get; set; } = null!;
 
+    [JsonIgnore]
     [ForeignKey("AssignedByUserId")]
     [InverseProperty("AssignmentAssignedByUsers")]
-    public virtual User AssignedByUser { get; set; } = null!;
+    public virtual User? AssignedByUser { get; set; } = null!;
 
+    [JsonIgnore]
     [ForeignKey("AssignedToUserId")]
     [InverseProperty("AssignmentAssignedToUsers")]
-    public virtual User AssignedToUser { get; set; } = null!;
+    public virtual User? AssignedToUser { get; set; } = null!;
 }

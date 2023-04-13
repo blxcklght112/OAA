@@ -46,6 +46,7 @@ body {
 .nav li.active,
 .side li.active {
   background-color: #882929;
+  color: white;
 }
 
 .nav li:hover,
@@ -143,6 +144,19 @@ body {
   border-color: #c2baba !important;
 }
 
+.ant-space-item a {
+  color: black;
+}
+
+.ant-space-item .ant-btn-primary{
+  background-color: red;
+  margin: 0 .5rem;
+}
+
+.ant-space-item .ant-btn-primary:hover{
+  background-color: rgb(255, 63, 63);
+}
+
 .ant-table-pagination .ant-pagination {
   color: red;
 }
@@ -229,10 +243,37 @@ button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--rotate:hove
   color: #c92c2c !important;
 }
 
-.ant-modal-confirm-btns .ant-btn-primary{
+.ant-modal-confirm-btns .ant-btn-primary,
+.ant-btn-primary{
   background-color: red;
 }
 
-.ant-modal-confirm-btns .ant-btn-primary:hover{
+.ant-modal-confirm-btns .ant-btn-primary:hover,
+.ant-modal-footer .ant-btn-primary:hover {
   background-color: rgb(255, 84, 84);
+}
+
+.extensions {
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+}
+
+.d-none {
+  display: none;
+}
+
+#create-assignment--form .ant-input-group-addon button{
+  color: white;
+  background-color: red;
+}
+
+#create-assignment--form .ant-input-group-addon button:hover {
+  color: white;
+  background-color: rgb(255, 84, 84);
+}
+
+#create-assignment--form input:hover, 
+#create-assignment--form textarea:hover{
+  border-color: red;
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace server.Models;
 
@@ -47,9 +48,11 @@ public partial class User
     [StringLength(50)]
     public string FullName { get; set; } = null!;
 
+    [JsonIgnore]
     [InverseProperty("AssignedByUser")]
-    public virtual ICollection<Assignment> AssignmentAssignedByUsers { get; } = new List<Assignment>();
+    public virtual ICollection<Assignment>? AssignmentAssignedByUsers { get; } = new List<Assignment>();
 
+    [JsonIgnore]
     [InverseProperty("AssignedToUser")]
-    public virtual ICollection<Assignment> AssignmentAssignedToUsers { get; } = new List<Assignment>();
+    public virtual ICollection<Assignment>? AssignmentAssignedToUsers { get; } = new List<Assignment>();
 }

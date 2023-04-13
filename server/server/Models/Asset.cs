@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace server.Models;
 
@@ -31,10 +32,12 @@ public partial class Asset
     [Column("CategoryID")]
     public int CategoryId { get; set; }
 
+    [JsonIgnore]
     [InverseProperty("Asset")]
-    public virtual ICollection<Assignment> Assignments { get; } = new List<Assignment>();
+    public virtual ICollection<Assignment>? Assignments { get; } = new List<Assignment>();
 
+    [JsonIgnore]
     [ForeignKey("CategoryId")]
     [InverseProperty("Assets")]
-    public virtual Category Category { get; set; } = null!;
+    public virtual Category? Category { get; set; } = null!;
 }

@@ -25,6 +25,7 @@ function App() {
                   <SideBar />
                   <div className='contents'>
                     <Routes>
+                      <Route path='*' element={<AdminHomePage />} />
                       <Route index path='/home' element={<AdminHomePage />} />
                       <Route path='/user' element={<AdminUserPage />} />
                       <Route path='/asset' element={<AdminAssetPage />} />
@@ -40,6 +41,7 @@ function App() {
                   <SideBar />
                   <div className='contents'>
                     <Routes>
+                      <Route path='*' element={<StaffHomePage />} />
                       <Route index path='/home' element={<StaffHomePage />} />
                       <Route path='/user' element={<StaffUserPage />} />
                       <Route path='/asset' element={<StaffAssetPage />} />
