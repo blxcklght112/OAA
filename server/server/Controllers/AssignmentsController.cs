@@ -23,6 +23,7 @@ namespace server.Controllers
         }
 
         // GET: api/Assignments
+        [AllowAnonymous]
         [HttpGet("/all-assignments")]
         public async Task<List<Assignment>> GetAllAssignments()
         {
@@ -52,6 +53,7 @@ namespace server.Controllers
             return await _service.OwnAssignments(username);
         }
 
+        [AllowAnonymous]
         // PUT: api/Assignments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("/update-assignment/{id}")]

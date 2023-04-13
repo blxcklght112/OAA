@@ -376,7 +376,7 @@ const CreateAssignment = () => {
                         "assignedToUserName": assignedToUser.username,
                         "assignedDate": assignedDate,
                         "note": note,
-                        "status": "waiting",
+                        "status": "Waiting",
                         "assetCode": selectedAsset.assetCode,
                         "asset": {
                             "id": selectedAsset.id,

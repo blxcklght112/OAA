@@ -315,9 +315,9 @@ const AdminAssignmentPage = () => {
                                             setPageSize(pageSize)
                                         }
                                     }}
-                                    onRow={(asset) => ({
-                                        onClick: () => (localStorage.setItem("edit-assignment-id", asset.id)),
-                                        onDoubleClick: () => (showModal(asset.id))
+                                    onRow={(assignment) => ({
+                                        onClick: () => (localStorage.setItem("edit-assignment-id", assignment.id)),
+                                        onDoubleClick: () => (showModal(assignment.id))
                                     })}
                                     rowKey={"id"}
                                 >

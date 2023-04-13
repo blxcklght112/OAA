@@ -4,7 +4,6 @@ import AdminHomePage from './pages/admin/AdminHomePage';
 import AdminUserPage from './pages/admin/AdminUserPage';
 import AdminAssetPage from './pages/admin/AdminAssetPage';
 import AdminAssignmentPage from './pages/admin/AdminAssignmentPage';
-import StaffHomePage from './pages/staff/StaffHomePage';
 import StaffUserPage from './pages/staff/StaffUserPage';
 import StaffAssetPage from './pages/staff/StaffAssetPage';
 import StaffAssignmentPage from './pages/staff/StaffAssignmentPage';
@@ -41,8 +40,8 @@ function App() {
                   <SideBar />
                   <div className='contents'>
                     <Routes>
-                      <Route path='*' element={<StaffHomePage />} />
-                      <Route index path='/home' element={<StaffHomePage />} />
+                      <Route path='*' element={<AdminHomePage />} />
+                      <Route index path='/home' element={<AdminHomePage />} />
                       <Route path='/user' element={<StaffUserPage />} />
                       <Route path='/asset' element={<StaffAssetPage />} />
                       <Route path='/assignment' element={<StaffAssignmentPage />} />

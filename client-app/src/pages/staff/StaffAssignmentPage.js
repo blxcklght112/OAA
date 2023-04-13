@@ -274,8 +274,8 @@ const StaffAssignmentPage = () => {
                                             setPageSize(pageSize)
                                         }
                                     }}
-                                    onRow={(asset) => ({
-                                        onClick: () => (showModal(asset.id))
+                                    onRow={(assignment) => ({
+                                        onClick: () => (showModal(assignment.id))
                                     })}
                                     rowKey={"id"}
                                 >

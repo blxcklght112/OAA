@@ -281,3 +281,27 @@ button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--rotate:hove
 #edit-assignment--form textarea:hover{
   border-color: red;
 }
+
+/* .login-page {
+  display: flex;
+  width: 900px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.login-page form{
+  width: 100%;
+} */
+
+.login-page .ant-btn-primary {
+  background-color: red;
+}
+
+.login-page .ant-btn-primary:hover {
+  background-color: rgb(255, 96, 96);
+}
+
+.err-msg {
+  color: red;
+}

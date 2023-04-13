@@ -95,7 +95,7 @@ namespace server.Services
 
             if(foundUser != null)
             {
-                var ownAssignments = await _context.Assignments.Where(x => x.AssignedToUserName == username && (x.Status.ToLower() == "waiting")).ToListAsync();
+                var ownAssignments = await _context.Assignments.Where(x => x.AssignedToUserName == username).ToListAsync();
 
                 return ownAssignments;
             }

@@ -34,7 +34,7 @@ const LoginPage = () => {
     }
 
     return (
-        <div>
+        <div className="login-page">
             {localStorage.getItem("token") ?
                 (<div>You're Login</div>) :
                 (
