@@ -1,9 +1,9 @@
-import { CloseCircleTwoTone, EditTwoTone, FilterFilled, ReloadOutlined } from "@ant-design/icons";
+import { CloseCircleTwoTone, FilterFilled } from "@ant-design/icons";
 import { Button, DatePicker, Input, Modal, Select, Space, Table } from "antd";
-import Link from "antd/es/typography/Link";
 import axios from "axios";
 import React, { useEffect, useState } from "react"
 import CreateAssignment from "../../services/assignments/CreateAssignment";
+import EditAssignment from "../../services/assignments/EditAssignment"
 
 const AdminAssignmentPage = () => {
     const [dataSource, setDataSource] = useState([]);
@@ -174,9 +174,7 @@ const AdminAssignmentPage = () => {
             dataIndex: "id",
             render: (id) => (
                 <Space>
-                    <Link to={`/assignment/${id}`}>
-                        <EditTwoTone twoToneColor="#52cbff"  />
-                    </Link>
+                    <EditAssignment />
                     <CloseCircleTwoTone twoToneColor="#d42a2a" onClick={() => showConfirm(id)} />
                 </Space>
             )

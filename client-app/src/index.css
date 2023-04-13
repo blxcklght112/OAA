@@ -263,17 +263,21 @@ button.ant-btn.ant-btn-text[disabled].btn--action__noborder svg.svg--rotate:hove
   display: none;
 }
 
-#create-assignment--form .ant-input-group-addon button{
+#create-assignment--form .ant-input-group-addon button,
+#edit-assignment--form .ant-input-group-addon button{
   color: white;
   background-color: red;
 }
 
-#create-assignment--form .ant-input-group-addon button:hover {
+#create-assignment--form .ant-input-group-addon button:hover,
+#edit-assignment--form .ant-input-group-addon button:hover {
   color: white;
   background-color: rgb(255, 84, 84);
 }
 
 #create-assignment--form input:hover, 
-#create-assignment--form textarea:hover{
+#create-assignment--form textarea:hover,
+#edit-assignment--form input:hover, 
+#edit-assignment--form textarea:hover{
   border-color: red;
 }

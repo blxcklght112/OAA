@@ -1,8 +1,9 @@
+import { EditTwoTone } from "@ant-design/icons";
 import { Button, DatePicker, Form, Input, Modal, Radio, Table } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const CreateAssignment = () => {
+const EditUser = () => {
     const [isVisible, setIsVisible] = useState(false);
     const { Search } = Input;
     const { TextArea } = Input;
@@ -357,15 +358,23 @@ const CreateAssignment = () => {
         setAssignedDate(new Date(date).toLocaleDateString("en-CA"));
     }
 
+    const editid = localStorage.getItem("edit-assignment-id");
+
     const onFinish = () => {
+        console.log(assignedByUser)
+        console.log(assignedToUser)
+        console.log(selectedAsset)
+        console.log(selectedCategory)
+        console.log(assignedDate)
+        console.log(note)
         var today = new Date().toLocaleDateString("en-CA");
         var ngaynhap = new Date(assignedDate).toLocaleDateString("en-CA");
         var Nspace = note
         if (ngaynhap >= today) {
             if (Nspace.trim().length !== 0) {
                 axios({
-                    method: 'post',
-                    url: `https://localhost:7150/create-assignment`,
+                    method: 'put',
+                    url: `https://localhost:7150/update-assignment/${editid}`,
                     data: {
                         "id": 22,
                         "assetName": selectedAsset.assetName,
@@ -466,21 +475,20 @@ const CreateAssignment = () => {
     return (
         <>
             <Button
-                type="primary"
-                danger
+                shape="circle"
+                icon={<EditTwoTone />}
                 onClick={showBigModal}
             >
-                Create new Assignment
             </Button>
             <Modal
                 open={isBigModalVisible}
-                title="Create New Assignment"
+                title="Update Assignment"
                 onCancel={handleBigModalCancel}
                 footer={[
                     <Button key="back" onClick={handleBigModalCancel}>
                         Return
                     </Button>,
-                    <Button form="create-assignment--form" htmlType="submit" type="primary" danger disabled={
+                    <Button form="edit-assignment--form" htmlType="submit" type="primary" danger disabled={
                         !form.isFieldsTouched(true) ||
                         form.getFieldsError().filter(({ errors }) => errors.length).length > 0
                     }>
@@ -489,7 +497,7 @@ const CreateAssignment = () => {
                 ]}
             >
                 <div>
-                    <Form id="create-assignment--form" name="complex-form" form={form} onFinish={onFinish} {...formItemLayout} labelAlign="left" >
+                    <Form id="edit-assignment--form" name="complex-form" form={form} onFinish={onFinish} {...formItemLayout} labelAlign="left" >
                         <Form.Item label="User" style={{ marginBottom: 0 }} >
                             <Form.Item
                                 // name="User"
@@ -630,4 +638,4 @@ const CreateAssignment = () => {
     )
 };
 
-export default CreateAssignment;
+export default EditUser;
