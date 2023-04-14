@@ -41,8 +41,8 @@ const AdminUserPage = () => {
                 return response.json();
             })
             .then(function (json) {
+                console.log(json)
                 setDetail(json);
-
             })
 
         setIsVisible(true)

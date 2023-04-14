@@ -41,18 +41,6 @@ export default function NavBar() {
             <p className="site-title">
                 Group 9
             </p>
-            {/* <ul>
-                    <li>
-                        <a href="/" className="user-info">
-                            <p className="nav-username">
-                                {localStorage.getItem("username")}
-                            </p>
-                            <p className="nav-role">
-                                {localStorage.getItem("role")}
-                            </p>
-                        </a>
-                    </li>
-                </ul> */}
             <Popover placement="bottomRight" content={content} trigger="hover" className="user-info">
                 <p className="nav-username">
                     {localStorage.getItem("username")}
